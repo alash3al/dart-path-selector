@@ -1,5 +1,5 @@
 /// extract the value at the specified path "dot-seprated string" from the specified data
-T selectFrom<T>(dynamic data, String path) {
+T? selectFrom<T>(dynamic data, String path) {
   var parts = path.split(".");
   dynamic val = data;
 
@@ -10,6 +10,10 @@ T selectFrom<T>(dynamic data, String path) {
     } else {
       val = (val as Map<String, dynamic>)[parts[i]];
     }
+
+    if (val == null) {
+      return null;
+    }
   }
 
   return val as T;
@@ -17,14 +21,14 @@ T selectFrom<T>(dynamic data, String path) {
 
 /// add a select method to any map
 extension MapPathSelector<K, V> on Map<K, V> {
-  T select<T>(String path) {
+  T? select<T>(String path) {
     return selectFrom(this, path);
   }
 }
 
 /// add a select method to any list
 extension ListPathSelector<V> on List<V> {
-  T select<T>(String path) {
+  T? select<T>(String path) {
     return selectFrom(this, path);
   }
 }

@@ -46,4 +46,7 @@ void main() {
 
   // will print PHP
   print(map.select("skills.#0.name"));
+
+  // will print null
+  print(map.select("skills2.unknown_key.value"));
 }
