@@ -11,7 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-Simply extract the values at specific paths in a `Map` or a `List`
+Simply extract required values from specific paths in a `Map` or a `List`
 
 
 ## Usage
