@@ -1,6 +1,36 @@
 /// extract the value at the specified path "dot-seprated string" from the specified data
 T? selectFrom<T>(dynamic data, String path) {
-  var parts = path.split(".");
+  var parts = [];
+  var currentKeyName = "";
+
+  for (var i = 0; i < path.length; i++) {
+    if (path[i] != "\\" && path[i] != ".") {
+      currentKeyName += path[i];
+      continue;
+    }
+
+    var hasAcharSkip = false;
+    if (path[i] == "\\") {
+      hasAcharSkip = true;
+      i++;
+    }
+
+    if (path[i] == ".") {
+      if (hasAcharSkip) {
+        currentKeyName += path[i];
+        continue;
+      }
+
+      parts.add(currentKeyName);
+      currentKeyName = "";
+      continue;
+    }
+  }
+
+  if (currentKeyName != "") {
+    parts.add(currentKeyName);
+  }
+
   dynamic val = data;
 
   for (var i = 0; i < parts.length; i++) {

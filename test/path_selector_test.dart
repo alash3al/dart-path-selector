@@ -9,6 +9,7 @@ void main() {
     {
       "name": "Some Name",
       "age": 28,
+      "some.dot-key.included": "Works!",
       "skills": [
         {
           "name": "PHP",
@@ -39,6 +40,9 @@ void main() {
     });
     test('Can nest-select from a List?', () {
       expect(list.select<String>("#2.key"), "value");
+    });
+    test('Can select dotted key?', () {
+      expect(map.select<String>("some\\.dot-key\\.included"), "Works!");
     });
   });
 }

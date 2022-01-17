@@ -12,6 +12,7 @@ void main() {
         "facebook": "https://fb.me/alash3al",
         "github": "https://github.com/alash3al"
       },
+      "some.dot-key.included": "Works!",
       "skills": [
         {
           "name": "PHP",
@@ -44,9 +45,12 @@ void main() {
   // will print {name: PHP, rating: 0.9}
   print(map.select("skills.#0"));
 
-  // will print PHP
+  // will print: PHP
   print(map.select("skills.#0.name"));
 
-  // will print null
+  // will print: null
   print(map.select("skills2.unknown_key.value"));
+
+  // will print: Works!
+  print(map.select("some\\.dot-key\\.included"));
 }
